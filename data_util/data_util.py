@@ -57,4 +57,8 @@ def gen_data(size):
 
     sens = 'sens'
 
-    return data, target, sens
+    # save sensitive dat and then remove it from the data set
+    sensitive = data[sens]
+    data = data.drop(sens, axis=1)
+
+    return data, target, sensitive

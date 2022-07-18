@@ -1,12 +1,13 @@
-import numpy as np
+
 import data_util.data_util as data_util
 from sklearn.linear_model import LogisticRegression
 
-size = 1000
-data, target, sens = data_util.gen_data(1000)
+# create the training data
+size = 100000
+tr_data, tr_target, tr_sensitive = data_util.gen_data(size)
 
-# save sensitive dat and then remove it from the data set
-sensitive = data[sens]
-data = data.drop(sens, axis=1)
+# fit a logistic model
+model = LogisticRegression(max_iter=10000)
+model.fit(tr_data, tr_target)
 
 print('stop')
