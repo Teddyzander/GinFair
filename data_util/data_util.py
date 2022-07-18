@@ -43,6 +43,10 @@ def gen_data(size):
 
         target[row] = np.random.choice([0, 1], p=[1 - prob, prob])
 
+    # normalise the data
+    for i in range(0, data.shape[1]):
+        data[:, i] = (data[:, i] - np.min(data[:, i])) / (np.max(data[:, i]) - np.min(data[:, i]))
+
     # Make into data frame
     data = pd.DataFrame(data,
                         columns=['x_1', 'x_2', 'x_3', 'sens'])
